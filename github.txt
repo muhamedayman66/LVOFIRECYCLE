@@ -1,0 +1,22 @@
+                                                                                                                                                                                         flutter clean
+flutter pub get
+flutter build apk --release
+
+
+git config --global user.name "muhamedayman66"
+git config --global user.email "muhamedayman500@gmail.com
+
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/muhamedayman66/LVOFIRECYCLE.git 
+git push -u origin main
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/muhamedayman66/IRECYCLE.WEB.git 
+git push -u origin main
