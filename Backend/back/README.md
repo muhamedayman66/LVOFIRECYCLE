@@ -1,4 +1,4 @@
-# Lvo-Recycle Backend
+# LvofIRecycle Backend
 
 This is the backend for the Lvo-Recycle application, built with Django and Django REST Framework.
 
@@ -12,7 +12,8 @@ Make sure you have the following installed on your system:
 
 1.  **Clone the repository (if you haven't already):**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/muhamedayman66/LVOFIRECYCLE.git
+
     cd LVOFIRECYCLE/Backend/back
     ```
 
