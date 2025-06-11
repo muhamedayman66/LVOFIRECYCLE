@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRECYCLE - Recycle Smart. Live Green.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f0fdfa; /* A very light, almost white green */
+      min-height: 100vh;
+      color: #334155; /* Slate 700 for body text */
+      scroll-behavior: smooth; /* Smooth scroll for anchor links */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative; /* Needed for the ::before pseudo-element */
+      overflow-x: hidden; /* Prevent horizontal scrollbar from pattern */
+    }
+
+    body::before {
+      content: "";
+      position: fixed; /* Fixed to cover viewport */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Untitled design2.png');
+      background-size: 150px; /* Adjust size of the logo */
+      background-repeat: repeat;
+      z-index: -1; /* Behind all other content */
+      animation: animatedLogoBackground 90s linear infinite;
+      opacity: 0.07; /* Make it very subtle */
+    }
+
+    @keyframes animatedLogoBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 300px 300px; } /* Adjust scroll distance for desired speed */
+    }
+    .navbar {
+      background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+      backdrop-filter: blur(12px); /* Frosted glass effect */
+      padding: 0.5rem 2rem; /* Adjusted padding for new logo size */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.06); /* Softer shadow */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .navbar.scrolled { /* Style for when navbar is scrolled */
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 80px; /* Navbar height + some buffer */
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, #10b981, #059669, #047857, #059669, #10b981); /* Extended for animation */
+      background-size: 250% 250%;
+      color: #ffffff;
+      overflow: hidden; /* Prevent scrollbars from animations */
+      position: relative; /* Added for pseudo-elements */
+      animation: heroGradientAnimation 20s ease infinite;
+    }
+
+    @keyframes heroGradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      max-width: 1100px; /* Wider container */
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .button {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+      transform: translateY(0);
+      display: inline-block;
+      font-weight: 600; /* Semibold */
+    }
+    .button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 20px -10px rgba(0,0,0,0.25); /* More dynamic shadow */
+    }
+    .nav-link {
+        color: #475569; /* Slate 600 */
+        font-weight: 500; /* Medium */
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem; /* Rounded-md */
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #059669 !important; /* Emerald 600 */
+      background-color: #d1fae5; /* Emerald 100 for subtle hover */
+    }
+    .nav-link.active {
+      color: #047857 !important; /* Emerald 700 */
+      font-weight: 600;
+      background-color: #a7f3d0; /* Emerald 200 */
+    }
+    .section {
+      padding: 80px 1.5rem 50px 1.5rem;
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden; /* For animations */
+    }
+    #about {
+      background-color: #ffffff;
+    }
+    #how-it-works {
+        background-color: #ffffff;
+    }
+    #contact {
+      background-color: #ecfdf5; /* Green 50 */
+    }
+    .footer {
+      background-color: #064e3b; /* Emerald 900 - Darker green */
+      color: #a7f3d0; /* Emerald 200 - Lighter text */
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      color: #4b5563; /* Gray 600 */
+      border-radius: 0.75rem; /* Rounded-xl */
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.04); /* Softer shadow */
+      text-align: left;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05); /* Enhanced hover shadow */
+    }
+    .feature-icon {
+      font-size: 2.25rem; /* text-4xl */
+      color: #10b981; /* Emerald 500 */
+      margin-bottom: 1rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy effect */
+    }
+    .card:hover .feature-icon {
+      transform: scale(1.15) rotate(-5deg);
+    }
+    .section-title {
+        font-size: 2.25rem; /* text-4xl */
+        font-weight: 800; /* Extrabold */
+        margin-bottom: 2.5rem; /* mb-10 */
+        color: #065f46; /* Emerald 800 */
+        position: relative;
+        display: inline-block;
+    }
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: #10b981; /* Emerald 500 */
+        margin: 0.75rem auto 0;
+        border-radius: 2px;
+    }
+
+    .hero .container { /* Ensure hero content is above the waves */
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100px; /* Adjust height of waves */
+      background-size: cover;
+      animation: wave-animation 15s infinite linear;
+      opacity: 0.2; /* Adjust opacity of waves */
+      z-index: 0; /* Ensure waves are behind content */
+    }
+
+    .hero::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.5' d='M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,133.3C960,107,1056,85,1152,96C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      animation-duration: 20s; /* Slower wave */
+    }
+
+    .hero::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.3' d='M0,224L40,234.7C80,245,160,267,240,250.7C320,235,400,181,480,149.3C560,117,640,107,720,128C800,149,880,203,960,224C1040,245,1120,235,1200,208C1280,181,1360,139,1400,117.3L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      animation-direction: reverse;
+      animation-duration: 25s; /* Different speed for variation */
+      bottom: -5px; /* Slight offset for layering */
+    }
+
+    @keyframes wave-animation {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1440px; } /* Width of the SVG pattern */
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+    .animated {
+      animation: fadeInUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+    /* Staggered animation for children */
+    .stagger-children > * {
+        opacity: 0;
+        animation: fadeInUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+  </style>
+</head>
+<body class="pt-[64px]"> <!-- Adjusted for navbar height -->
+  <nav class="navbar">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
+      <a href="#home" class="text-2xl font-bold text-emerald-600 hover:text-emerald-500 transition duration-300">
+        <img src="Untitled design2.png" alt="IRECYCLE Logo" class="h-12 inline"> <!-- Adjusted height to h-12 (3rem) -->
+      </a>
+      <div class="hidden md:flex space-x-2">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#ai-results" class="nav-link">AI Results</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-slate-600 hover:text-emerald-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-2">
+        <a href="#home" class="block nav-link text-center py-2">Home</a>
+        <a href="#about" class="block nav-link text-center py-2">About Us</a>
+        <a href="#how-it-works" class="block nav-link text-center py-2">How It Works</a>
+        <a href="#ai-results" class="block nav-link text-center py-2">AI Results</a>
+        <a href="#team" class="block nav-link text-center py-2">Team</a>
+        <a href="#contact" class="block nav-link text-center py-2">Contact</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter animate-on-scroll animated" style="animation-delay: 0.1s;">
+        Recycle Smart. <span class="block sm:inline">Live Green.</span>
+      </h1>
+      <p class="text-lg sm:text-xl md:text-2xl mb-10 leading-relaxed text-emerald-50 max-w-3xl mx-auto animate-on-scroll animated" style="animation-delay: 0.3s;">
+        Join IRECYCLE and be part of the solution. Making recycling easy, rewarding, and impactful for a sustainable future.
+      </p>
+      <div class="animate-on-scroll animated" style="animation-delay: 0.5s;">
+        <a href="apk/IRECYCLE.apk" download class="button bg-white hover:bg-emerald-50 text-emerald-600 font-semibold py-3 px-8 rounded-full text-md sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105">
+          Download The App (Android Version)
+        </a>
+        <a href="https://appetize.io/app/b_74szhjqcvdinmbjgyrjivqwsyi?device=pixel9pro&scale=75&autoplay=true&orientation=portrait&deviceColor=black" target="_blank" class="button bg-white hover:bg-emerald-50 text-emerald-600 font-semibold py-3 px-8 rounded-full text-md sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 ml-0 mt-4 sm:ml-4 sm:mt-0">
+          Try App Online
+        </a>
+<div id="countdown-timer" class="mt-12 animate-on-scroll animated" style="animation-delay: 0.7s;">
+  <h3 class="text-xl sm:text-2xl font-semibold text-emerald-100 mb-2 tracking-wide">Countdown until the app is live!</h3>
+  <div class="text-3xl sm:text-4xl font-bold text-white flex justify-center items-center space-x-2 sm:space-x-4">
+    <div><span id="days" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Days</span></div>
+    <span class="text-2xl">:</span>
+    <div><span id="hours" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Hours</span></div>
+    <span class="text-2xl">:</span>
+    <div><span id="minutes" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Mins</span></div>
+    <span class="text-2xl">:</span>
+    <div><span id="seconds" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Secs</span></div>
+  </div>
+</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container animate-on-scroll">
+      <h2 class="section-title animated">About IRECYCLE</h2>
+      <div class="max-w-4xl mx-auto animated text-center" style="animation-delay: 0.2s;">
+        <p class="text-lg md:text-xl mb-6 leading-relaxed text-slate-700 px-4 sm:px-6">
+          At IRECYCLE, we are driven by a passion for creating a sustainable future through innovative recycling solutions.
+          Our core mission is to empower individuals and communities to significantly reduce waste, actively promote eco-friendly practices,
+          and make a tangible contribution to a healthier planet.
+        </p>
+        <p class="text-lg md:text-xl leading-relaxed text-slate-700 px-4 sm:px-6">
+          By harnessing the power of technology, we strive to make recycling more accessible, highly efficient,
+          and genuinely rewarding for everyone involved. We firmly believe that every small action collectively makes a big difference. Join us on our exciting journey to transform waste into valuable opportunities and collaboratively build a greener tomorrow, one conscious step at a time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="section">
+    <div class="container animate-on-scroll">
+      <h2 class="section-title animated">How IRECYCLE Works</h2>
+      <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch stagger-children">
+        <div class="card text-center p-6 flex flex-col" style="animation-delay: 0.1s;">
+          <div class="feature-icon mb-4">📱</div>
+          <h3 class="text-xl font-semibold mb-2 text-emerald-700">Download & Sign Up</h3>
+          <p class="text-sm text-slate-600 flex-grow">Get the IRECYCLE app. Create your account in moments and begin your eco-friendly journey with us.</p>
+        </div>
+        <div class="card text-center p-6 flex flex-col" style="animation-delay: 0.25s;">
+          <div class="feature-icon mb-4">♻️</div>
+          <h3 class="text-xl font-semibold mb-2 text-emerald-700">Sort & Schedule</h3>
+          <p class="text-sm text-slate-600 flex-grow">Easily sort your recyclables using our clear guidelines. Find collection points or schedule a pickup at your convenience.</p>
+        </div>
+        <div class="card text-center p-6 flex flex-col" style="animation-delay: 0.4s;">
+          <div class="feature-icon mb-4">🎁</div>
+          <h3 class="text-xl font-semibold mb-2 text-emerald-700">Earn & Redeem</h3>
+          <p class="text-sm text-slate-600 flex-grow">Once processed, earn points for your recyclables. Redeem for rewards, discounts, or support environmental causes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="ai-results" class="section bg-emerald-50">
+  <div class="container animate-on-scroll">
+    <h2 class="section-title animated">AI-Powered Recycling Classification</h2>
+    <div class="max-w-3xl mx-auto text-left">
+        <p class="text-md md:text-lg mb-6 leading-relaxed text-slate-700 animated" style="animation-delay: 0.2s;">
+            Our AI-powered system leverages advanced deep learning to streamline the recycling process. Using a fine-tuned MobileNetV2 model, IRECYCLE accurately identifies recyclable materials, achieving a test accuracy of 91.66%. Here's how our AI enhances recycling efficiency:
+        </p>
+        <div class="space-y-4">
+            <div class="card p-4 animated" style="animation-delay: 0.3s;">
+                <h3 class="text-lg font-semibold text-emerald-700 mb-1">Accurate Material Classification</h3>
+                <p class="text-sm text-slate-600">Our AI model, trained on a dataset of 12,594 images, identifies Aluminum Cans, Glass Bottles, and Plastic Bottles with high precision, helping users sort recyclables correctly.</p>
+            </div>
+            <div class="card p-4 animated" style="animation-delay: 0.4s;">
+                <h3 class="text-lg font-semibold text-emerald-700 mb-1">Real-Time Image Processing</h3>
+                <p class="text-sm text-slate-600">Upload an image through the IRECYCLE app, and our FastAPI backend processes it instantly, delivering classification results with confidence scores to guide recycling decisions.</p>
+            </div>
+            <div class="card p-4 animated" style="animation-delay: 0.5s;">
+                <h3 class="text-lg font-semibold text-emerald-700 mb-1">Robust and Scalable AI</h3>
+                <p class="text-sm text-slate-600">Built with TensorFlow and optimized with techniques like dropout and L2 regularization, our model ensures robust performance, minimizing errors and supporting scalable recycling solutions.</p>
+            </div>
+        </div>
+        <p class="text-md md:text-lg mt-6 leading-relaxed text-slate-700 animated" style="animation-delay: 0.6s;">
+            With a validation accuracy peaking at 94.15% during training, our AI system empowers users to recycle smarter, contributing to a cleaner and more sustainable environment.
+        </p>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="section bg-white">
+  <div class="container animate-on-scroll">
+    <h2 class="section-title animated">Our Team</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+      <!-- Mustafa Muhamed -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.1s;">
+        <img src="MustafaMuhamed.jpg" alt="Mustafa Muhamed" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Mustafa Muhamed</h3>
+        <p class="text-sm text-slate-500 mt-auto pt-2">Flutter | AI</p>
+      </div>
+      <!-- Muhamed Ayman -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.2s;">
+        <img src="MuhamedAyman.jpeg" alt="Muhamed Ayman" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Muhamed Ayman</h3>
+        <p class="text-md text-emerald-600 font-medium mb-1">Team Leader</p>
+        <p class="text-sm text-slate-500">Flutter | AI | UI-UX</p>
+      </div>
+      <!-- Khaled Ahmed -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.3s;">
+        <img src="KhaledAhmed.jpg" alt="Khaled Ahmed" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Khaled Ahmed</h3>
+        <p class="text-sm text-slate-500 mt-auto pt-2">Backend</p>
+      </div>
+      <!-- Moreen Victor -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.4s;">
+        <img src="MoreenVicor.jpg" alt="Moreen Victor" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Moreen Victor</h3>
+        <p class="text-sm text-slate-500 mt-auto pt-2">Backend</p>
+      </div>
+      <!-- Nadia Hammam -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.5s;">
+        <img src="NadiaHammam.jpg" alt="Nadia Hammam" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Nadia Hammam</h3>
+        <p class="text-sm text-slate-500 mt-auto pt-2">Flutter | AI</p>
+      </div>
+      <!-- Norhan Ashraf -->
+      <div class="card text-center p-6 flex flex-col items-center" style="animation-delay: 0.6s;">
+        <img src="NorhanAshraf.jpg" alt="Norhan Ashraf" class="w-32 h-32 mx-auto rounded-full mb-4 object-cover shadow-lg">
+        <h3 class="text-xl font-semibold mb-1 text-emerald-700">Norhan Ashraf</h3>
+        <p class="text-sm text-slate-500 mt-auto pt-2">Flutter | AI</p>
+      </div>
+    </div>
+  </div>
+</section>
+  <section id="contact" class="section">
+    <div class="container animate-on-scroll">
+      <h2 class="section-title animated">Get In Touch</h2>
+      <div class="card max-w-lg mx-auto p-6 sm:p-8 text-center animated" style="animation-delay: 0.2s;">
+        <p class="text-md md:text-lg mb-5 leading-relaxed text-slate-700">
+          Have questions, suggestions, or interested in partnering with us? We're excited to hear from you!
+        </p>
+        <div class="mt-5">
+            <p class="text-md text-slate-600 mb-2">Connect with us via email:</p>
+            <a href="mailto:irecycle.eg@gmail.com" class="inline-flex items-center justify-center button bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-6 rounded-lg text-md shadow-md hover:shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                irecycle.eg@gmail.com
+            </a>
+            <p class="mt-5 text-xs text-slate-500">We aim to respond within 1-2 business days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container mx-auto">
+      <p class="text-md font-semibold">&copy; <span id="currentYear"></span> IRECYCLE. All Rights Reserved.</p>
+      <p class="mt-2 text-sm text-emerald-300">Pioneering a Greener Future, Together.</p>
+      <div class="mt-4 space-x-2 sm:space-x-4">
+        <a href="#home" class="text-emerald-300 hover:text-white text-xs sm:text-sm">Home</a>
+        <span class="text-emerald-400">|</span>
+        <a href="#about" class="text-emerald-300 hover:text-white text-xs sm:text-sm">About</a>
+        <span class="text-emerald-400">|</span>
+        <a href="#contact" class="text-emerald-300 hover:text-white text-xs sm:text-sm">Contact</a>
+      </div>
+      <div class="mt-6 flex justify-center space-x-6">
+        <a href="https://www.instagram.com/irecycle.eg?igsh=MXNuZjVlZ3RlNTZqbA==" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-white">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664 4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+        </a>
+        <a href="https://www.tiktok.com/@recycle.eg?_t=ZS-8x4Y9HVDDkG&_r=1" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-white">
+          <img src="https://www.svgrepo.com/show/431991/tiktok.svg" alt="TikTok" class="w-6 h-6" style="filter: brightness(0) saturate(100%) invert(84%) sepia(21%) saturate(486%) hue-rotate(91deg) brightness(101%) contrast(93%);">
+        </a>
+        <a href="https://www.facebook.com/share/1CobdZEpUa/" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-white">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight - 10; // Extra offset for better spacing
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px', // Trigger a bit before it's fully in view from bottom
+      threshold: 0.1
+    };
+
+    let animationDelayBase = 0.1; // Initial delay for staggering
+
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.classList.add('animated');
+          
+          // Stagger children if the parent has 'stagger-children'
+          if (el.classList.contains('stagger-children')) {
+            let childDelay = 0.1; // Initial delay for children
+            const children = el.querySelectorAll('.card, h1, p, .button'); // Select elements to stagger
+            children.forEach(child => {
+              if (!child.style.animationDelay) { // Apply delay only if not already set
+                child.style.animationDelay = `${childDelay}s`;
+              }
+              child.classList.add('animated'); // Ensure children are also animated
+              childDelay += 0.15; // Increment delay for next child
+            });
+          } else if (el.style.animationDelay) {
+            // If the element itself has a delay, ensure it's applied
+             setTimeout(() => { el.style.opacity = 1;}, parseFloat(el.style.animationDelay) * 1000);
+          } else {
+             el.style.opacity = 1; // Make visible if no specific delay
+          }
+          observer.unobserve(el);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+     // Apply initial delays for hero elements if they are visible on load
+    document.querySelectorAll('#home .animate-on-scroll').forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
+            // Manually trigger for elements already in view (like hero)
+            if (el.style.animationDelay) {
+                 setTimeout(() => { el.classList.add('animated'); el.style.opacity = 1;}, parseFloat(el.style.animationDelay) * 1000);
+            } else {
+                 el.classList.add('animated');
+                 el.style.opacity = 1;
+            }
+            observer.unobserve(el); // Unobserve if animated on load
+        } else {
+            observer.observe(el);
+        }
+    });
+
+
+    // Active Nav Link Highlighting on Scroll
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a.nav-link"); // Target all nav links
+
+    window.addEventListener("scroll", () => {
+      let currentSectionId = "";
+      const navbarHeight = navbar.offsetHeight;
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - navbarHeight - 50; // Adjusted offset
+        if (window.pageYOffset >= sectionTop) {
+          currentSectionId = section.getAttribute("id");
+        }
+      });
+      
+      // Fallback to home if no section is active (e.g., at the very top or bottom beyond last section)
+      if (!currentSectionId && window.pageYOffset < sections[0].offsetTop - navbarHeight - 50) {
+          currentSectionId = "home";
+      }
+
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        // Handle both main nav and mobile nav links
+        const linkHref = link.getAttribute("href");
+        if (linkHref === `#${currentSectionId}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+// Countdown Timer Logic
+    const countdownDate = new Date("June 15, 2025 12:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+      const timerEl = document.getElementById("countdown-timer");
+
+      if (daysEl && hoursEl && minutesEl && secondsEl) {
+        daysEl.innerHTML = days < 10 ? '0' + days : days;
+        hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
+        minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+        secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+      }
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        if (timerEl) {
+            timerEl.innerHTML = "<h3 class='text-2xl sm:text-3xl font-bold text-white'>Presentation Day is Here! Good Luck!</h3>";
+        }
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
