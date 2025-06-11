@@ -236,9 +236,75 @@
         opacity: 0;
         animation: fadeInUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     }
+    .fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1001;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .pyro > .before, .pyro > .after {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      box-shadow: -120px -218.66667px blue, 248px -16.66667px #00ff84, 190px 16.33333px #002bff, -113px -308.66667px #ff009d, -109px -287.66667px #ffb300, -50px -313.66667px #ff006e, 226px -31.66667px #ff4000, 180px -351.66667px #ff00d4, -12px -338.66667px #00f6ff, 220px -388.66667px #99ff00, -69px -27.66667px #ff0400, -112px -133.66667px #ff0073, -154px -23.66667px #00ffd0, -10px -175.66667px #007bff, -34px -302.66667px #008cff, -234px -366.66667px #ff00a6, 234px -24.66667px #00ffb3, -160px -196.66667px #00aeff, -244px -341.66667px #ff00c8, 224px -142.66667px #b700ff, 82px -202.66667px #00ffa2, 212px -326.66667px #0084ff, -112px -21.66667px #00f2ff, -218px -184.66667px #8800ff, -198px -333.66667px #ff0055, 238px -370.66667px #ff0091, 100px -114.66667px #0059ff, 104px -334.66667px #00ffb7, -243px -111.66667px #ff00c8, 239px -291.66667px #00aeff, 123px -225.66667px #ff0055, -18px -196.66667px #d4ff00, -225px -38.66667px #8c00ff, -43px -206.66667px #00ffea, 121px -328.66667px #00aeff, -213px -32.66667px #00ffd9, -133px -380.66667px #ff00bf, -108px -113.66667px #0091ff, 132px -19.66667px #ff004c, -210px -301.66667px #00f6ff, 14px -239.66667px #00aeff, -192px -6.66667px #9d00ff, -13px -328.66667px #00ff2f, -100px -368.66667px #00ddff, -131px -106.66667px #3300ff, 243px -128.66667px #ff0066, 93px -224.66667px #ff0019, -142px -126.66667px #00aeff, -137px -321.66667px #ff004c, 113px -165.66667px #00aeff, -191px -228.66667px #00ffdd, 131px -318.66667px #00aeff, 233px -106.66667px #0055ff;
+      animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    }
+    .pyro > .after {
+      animation-delay: 1.25s, 1.25s, 1.25s;
+      animation-duration: 1.25s, 1.25s, 6.25s;
+    }
+    @keyframes bang {
+      to {
+        box-shadow: -101px -75.66667px #00d9ff, 223px 130.33333px #00ff48, 172px -133.66667px #00b3ff, -24px -402.66667px #ff006e, -156px -16.66667px #ffdd00, -150px -114.66667px #ff002f, 204px -200.66667px #ff2f00, 219px -232.66667px #ff00cc, -113px -211.66667px #00f2ff, 191px -188.66667px #b3ff00, -11px -332.66667px #ff0000, -211px -121.66667px #ff006e, -22px 188.33333px #00ffc8, 213px -158.66667px #008cff, -123px -201.66667px #0073ff, -249px -119.66667px #ff00a2, 13px -112.66667px #00ffdd, -110px -378.66667px #00aeff, -213px -344.66667px #ff00d4, 188px -347.66667px #9500ff, 111px -341.66667px #00ffb3, 184px -102.66667px #00aeff, -100px -320.66667px #ff00a6, 13px -264.66667px #009dff, -218px -364.66667px #d9ff00, -176px 104.33333px #8000ff, -121px -301.66667px #00ffea, 223px -213.66667px #00aeff, -114px -379.66667px #00ffc8, -174px -242.66667px #ff00b3, -188px -381.66667px #00a6ff, 155px -319.66667px #ff0033, -248px -11.66667px #00f2ff, 185px -211.66667px #00aeff, -151px -37.66667px #b300ff, -245px -216.66667px #00ff59, -153px -368.66667px #00ddff, -113px -114.66667px #4000ff, 161px -123.66667px #ff005d, 196px -352.66667px #ff0015, -111px -24.66667px #00aeff, -171px -123.66667px #ff003b, 133px -42.66667px #00aeff, -181px -343.66667px #00ffc8, 13px -151.66667px #0066ff;
+      }
+    }
+    @keyframes gravity {
+      to {
+        transform: translateY(200px);
+        opacity: 0;
+      }
+    }
+    @keyframes position {
+      0%, 19.9% {
+        margin-top: 10%;
+        margin-left: 40%;
+      }
+      20%, 39.9% {
+        margin-top: 40%;
+        margin-left: 30%;
+      }
+      40%, 59.9% {
+        margin-top: 20%;
+        margin-left: 70%;
+      }
+      60%, 79.9% {
+        margin-top: 30%;
+        margin-left: 20%;
+      }
+      80%, 99.9% {
+        margin-top: 30%;
+        margin-left: 80%;
+      }
+    }
   </style>
 </head>
 <body class="pt-[64px]"> <!-- Adjusted for navbar height -->
+  <div id="fireworks-container" class="fireworks">
+    <div class="pyro">
+      <div class="before"></div>
+      <div class="after"></div>
+    </div>
+    <h2 id="live-message" class="text-4xl sm:text-5xl font-bold text-white z-10">The application is now live!</h2>
+  </div>
   <nav class="navbar">
     <div class="max-w-6xl mx-auto flex justify-between items-center px-4">
       <a href="#home" class="text-2xl font-bold text-emerald-600 hover:text-emerald-500 transition duration-300">
@@ -284,18 +350,18 @@
         <a href="https://appetize.io/app/b_74szhjqcvdinmbjgyrjivqwsyi?device=pixel9pro&scale=75&autoplay=true&orientation=portrait&deviceColor=black" target="_blank" class="button bg-white hover:bg-emerald-50 text-emerald-600 font-semibold py-3 px-8 rounded-full text-md sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 ml-0 mt-4 sm:ml-4 sm:mt-0">
           Try App Online
         </a>
-<div id="countdown-timer" class="mt-12 animate-on-scroll animated" style="animation-delay: 0.7s;">
-  <h3 class="text-xl sm:text-2xl font-semibold text-emerald-100 mb-2 tracking-wide">Countdown until the app is live!</h3>
-  <div class="text-3xl sm:text-4xl font-bold text-white flex justify-center items-center space-x-2 sm:space-x-4">
-    <div><span id="days" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Days</span></div>
-    <span class="text-2xl">:</span>
-    <div><span id="hours" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Hours</span></div>
-    <span class="text-2xl">:</span>
-    <div><span id="minutes" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Mins</span></div>
-    <span class="text-2xl">:</span>
-    <div><span id="seconds" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-sm block opacity-75">Secs</span></div>
-  </div>
-</div>
+        <div id="countdown-timer" class="mt-12 animate-on-scroll animated" style="animation-delay: 0.7s;">
+          <h3 class="text-2xl sm:text-3xl font-semibold text-emerald-100 mb-4 tracking-wide">Countdown until the app is live!</h3>
+          <div class="text-2xl sm:text-3xl font-bold text-white flex justify-center items-center space-x-2 sm:space-x-3">
+            <div><span id="days" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-xs block opacity-75 mt-1">Days</span></div>
+            <span class="text-xl mx-1">:</span>
+            <div><span id="hours" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-xs block opacity-75 mt-1">Hours</span></div>
+            <span class="text-xl mx-1">:</span>
+            <div><span id="minutes" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-xs block opacity-75 mt-1">Mins</span></div>
+            <span class="text-xl mx-1">:</span>
+            <div><span id="seconds" class="bg-white bg-opacity-20 px-2 py-1 rounded-md"></span><span class="text-xs block opacity-75 mt-1">Secs</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -594,11 +660,43 @@
       });
     });
 // Countdown Timer Logic
-    const countdownDate = new Date("June 15, 2025 12:00:00").getTime();
+    const countdownDate = new Date("June 15, 2025 11:00:00").getTime();
+    const fireworksContainer = document.getElementById("fireworks-container");
+    const timerEl = document.getElementById("countdown-timer");
+    const celebrationKey = 'celebrationStartTime';
+
+    function showCelebration() {
+      if (timerEl) timerEl.style.display = 'none';
+      if (fireworksContainer) fireworksContainer.style.display = 'flex';
+    }
+
+    function hideCelebration() {
+      if (fireworksContainer) fireworksContainer.style.display = 'none';
+    }
+
+    const celebrationStartTime = localStorage.getItem(celebrationKey);
+    if (celebrationStartTime) {
+      const now = new Date().getTime();
+      const celebrationDuration = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
+      if (now - celebrationStartTime < celebrationDuration) {
+        showCelebration();
+      } else {
+        localStorage.removeItem(celebrationKey);
+      }
+    }
 
     const countdownFunction = setInterval(function() {
       const now = new Date().getTime();
       const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        showCelebration();
+        if (!localStorage.getItem(celebrationKey)) {
+          localStorage.setItem(celebrationKey, new Date().getTime());
+        }
+        return;
+      }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -609,20 +707,12 @@
       const hoursEl = document.getElementById("hours");
       const minutesEl = document.getElementById("minutes");
       const secondsEl = document.getElementById("seconds");
-      const timerEl = document.getElementById("countdown-timer");
 
       if (daysEl && hoursEl && minutesEl && secondsEl) {
         daysEl.innerHTML = days < 10 ? '0' + days : days;
         hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
         minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
         secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
-      }
-
-      if (distance < 0) {
-        clearInterval(countdownFunction);
-        if (timerEl) {
-            timerEl.innerHTML = "<h3 class='text-2xl sm:text-3xl font-bold text-white'>Presentation Day is Here! Good Luck!</h3>";
-        }
       }
     }, 1000);
   </script>
