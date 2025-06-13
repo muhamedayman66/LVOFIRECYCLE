@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print, deprecated_member_use
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/core/api/api_constants.dart';
@@ -21,7 +23,6 @@ class _ForgetPasswordStep1ScreenState extends State<ForgetPasswordStep1Screen> {
   final TextEditingController _displayUserTypeController = TextEditingController();
   String? _selectedUserType;
 
-  // إضافة TYPE_CHOICES كـ Map للتوافق مع الباك إند
   final Map<String, String> typeChoices = {
     'Customer': 'regular_user',
     'Delivery Boy': 'delivery_boy',
@@ -197,26 +198,22 @@ class _ForgetPasswordStep1ScreenState extends State<ForgetPasswordStep1Screen> {
       }
 
       try {
-        // تحديد الـ endpoint بناءً على نوع المستخدم
         final String apiUrl =
             _selectedUserType == 'regular_user'
                 ? ApiConstants.registers
                 : ApiConstants.deliveryBoys;
 
-        // إرسال طلب GET للتحقق من الإيميل
         final response = await http.get(Uri.parse(apiUrl));
 
         if (response.statusCode == 200) {
           final List<dynamic> data = json.decode(response.body);
 
-          // البحث عن المستخدم بالإيميل
           final user = data.firstWhere(
             (user) => user['email'] == _emailController.text,
             orElse: () => null,
           );
 
           if (user != null) {
-            // إذا تم العثور على الإيميل، الانتقال إلى صفحة OTP
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -224,12 +221,11 @@ class _ForgetPasswordStep1ScreenState extends State<ForgetPasswordStep1Screen> {
                     (context) => OtpAuthenticationScreen(
                       email: _emailController.text,
                       source: "forget_password",
-                      userType: _selectedUserType!, // تمرير userType
+                      userType: _selectedUserType!, 
                     ),
               ),
             );
           } else {
-            // إذا لم يتم العثور على الإيميل
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text(
@@ -244,7 +240,6 @@ class _ForgetPasswordStep1ScreenState extends State<ForgetPasswordStep1Screen> {
             );
           }
         } else {
-          // إذا حدث خطأ في الاتصال بالخادم
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(

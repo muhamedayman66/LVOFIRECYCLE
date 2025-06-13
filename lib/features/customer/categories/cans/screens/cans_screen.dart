@@ -4,7 +4,6 @@ import 'package:graduation_project11/core/widgets/custom_appbar.dart';
 import 'package:graduation_project11/features/customer/categories/cans/screens/cans_info_screen.dart';
 import 'package:graduation_project11/features/customer/home/presentation/screen/home_screen.dart';
 
-
 class CansScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -85,7 +84,7 @@ class CansScreen extends StatelessWidget {
                           Text("•  ", style: TextStyle(fontSize: 16)),
                           Expanded(
                             child: Text(
-                              "The minimum quantity accepted is 5 cans, but you can recycle larger amounts in multiples of 5 (e.g., 10, 15, 20).",
+                              "The minimum accepted quantity is 5 items and above.",
                               style: TextStyle(fontSize: 12, height: 1.4),
                             ),
                           ),

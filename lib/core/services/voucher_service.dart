@@ -6,7 +6,6 @@ import '../models/voucher_model.dart';
 class VoucherService {
   static const String _baseUrl = ApiConstants.baseUrl;
 
-  // للمستخدم - إنشاء قسيمة جديدة
   Future<Map<String, dynamic>> generateVoucher(
     String email,
     double amount,
@@ -25,7 +24,6 @@ class VoucherService {
     }
   }
 
-  // للمستخدم - التحقق من حالة القسيمة
   Future<Map<String, dynamic>> checkVoucherStatus(String email) async {
     final response = await http.get(
       Uri.parse('${ApiConstants.baseUrl}/check_voucher_status/$email/'),
@@ -39,7 +37,6 @@ class VoucherService {
     }
   }
 
-  // للمستخدم - استخدام القسيمة
   Future<void> redeemVoucher(String email, int pointsToRedeem) async {
     final response = await http.post(
       Uri.parse('${ApiConstants.baseUrl}/use_qr_code/'),
@@ -53,7 +50,6 @@ class VoucherService {
     }
   }
 
-  // لعمال التوصيل - مسح QR code القسيمة
   Future<VoucherModel> scanVoucherQR(
     String qrCode,
     String deliveryBoyId,
@@ -71,7 +67,6 @@ class VoucherService {
     }
   }
 
-  // للعملاء - الحصول على قائمة القسائم
   Future<List<VoucherModel>> getCustomerVouchers(String customerId) async {
     final response = await http.get(
       Uri.parse('$_baseUrl/vouchers/customer/$customerId'),
@@ -86,7 +81,6 @@ class VoucherService {
     }
   }
 
-  // للمستخدم - الحصول على معلومات النقاط والمكافآت
   Future<Map<String, dynamic>> getUserBalance(String email) async {
     final response = await http.get(
       Uri.parse('${ApiConstants.baseUrl}/user_balance/$email/'),
@@ -100,7 +94,6 @@ class VoucherService {
     }
   }
 
-  // للمستخدم - الحصول على سجل القسائم
   Future<List<Map<String, dynamic>>> getVoucherHistory(String email) async {
     final response = await http.get(
       Uri.parse('${ApiConstants.baseUrl}/qr_usage_history/$email/'),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/core/api/api_constants.dart';
 import 'package:graduation_project11/core/themes/app__theme.dart';
@@ -28,7 +30,6 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
   bool _hasError = false;
   bool emailValid = false;
 
-  // إضافة TYPE_CHOICES كـ Map للتوافق مع الباك إند
   final Map<String, String> typeChoices = {
     'Customer': 'customer',
     'Delivery Boy': 'delivery_boy',
@@ -36,7 +37,6 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
 
   Future<bool> emailValidCheck(String email, String userType) async {
     try {
-      // التحقق من وجود البريد الإلكتروني في نموذج Register
       final registerResponse = await http.get(
         Uri.parse(ApiConstants.registers),
       );
@@ -47,7 +47,6 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
         }
       }
 
-      // التحقق من وجود البريد الإلكتروني في نموذج DeliveryBoy
       if (userType.toLowerCase() == 'delivery_boy') {
         final deliveryBoyResponse = await http.get(
           Uri.parse(ApiConstants.deliveryBoys),
@@ -74,7 +73,6 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
       return;
     }
 
-    // التحقق من وجود البريد الإلكتروني
     emailValid = await emailValidCheck(
       emailController.text,
       typeController.text,
@@ -86,7 +84,6 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
       return;
     }
 
-    // تحديد المسار بناءً على نوع المستخدم
     String endpoint =
         typeController.text == 'customer'
             ? ApiConstants.registerCreate
@@ -98,9 +95,9 @@ class _SignUpScreen1State extends State<SignUpScreen1> {
         'last_name': lastNameController.text,
         'gender': genderController.text,
         'email': emailController.text,
-        'birth_date': '2000-01-01', // قيمة مؤقتة
-        'phone_number': '0123456789', // قيمة مؤقتة
-        'governorate': 'cairo', // قيمة افتراضية، يمكن تعديلها لاحقًا
+        'birth_date': '2000-01-01', 
+        'phone_number': '0123456789',
+        'governorate': 'cairo', 
       };
 
       if (typeController.text == 'customer') {

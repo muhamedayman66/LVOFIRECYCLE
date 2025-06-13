@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print, depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/features/customer/home/presentation/screen/home_screen.dart';
 import 'package:graduation_project11/features/customer/recycling/presentation/screens/order_status_screen.dart';

@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppTheme.light.colorScheme.primary,
       elevation: 0,
       flexibleSpace: Padding(
-        padding: const EdgeInsets.only(bottom: 15), // التحكم في النزول لتحت
+        padding: const EdgeInsets.only(bottom: 15),
         child: Stack(
           children: [
             // Title in bottom center
@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
 
-            // Leading widget in bottom left (بنفس المستوى)
+            // Leading widget in bottom left
             if (showBackArrow)
               Align(
                 alignment: Alignment.bottomLeft,
@@ -46,7 +46,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: const EdgeInsets.only(
                     left: 5,
                     top: 20,
-                  ), // نزّل السهم شوية
+                  ), 
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                     onPressed: () {
@@ -62,7 +62,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: const EdgeInsets.only(
                     left: 5,
                     top: 20,
-                  ), // نزّل السهم شوية
+                  ), 
                   child: leading!,
                 ),
               ),

@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/core/themes/app__theme.dart';
@@ -7,13 +9,13 @@ import 'package:graduation_project11/features/auth/update_password/screens/set_p
 class OtpAuthenticationScreen extends StatefulWidget {
   final String email;
   final String source;
-  final String userType; // إضافة userType كمعامل
+  final String userType;
 
   const OtpAuthenticationScreen({
     super.key,
     required this.email,
     required this.source,
-    required this.userType, // جعل userType مطلوبًا
+    required this.userType,
   });
 
   @override

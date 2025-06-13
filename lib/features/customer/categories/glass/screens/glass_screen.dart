@@ -4,7 +4,6 @@ import 'package:graduation_project11/core/widgets/custom_appbar.dart';
 import 'package:graduation_project11/features/customer/categories/glass/screens/glass_info_screen.dart';
 import 'package:graduation_project11/features/customer/home/presentation/screen/home_screen.dart';
 
-
 class GlassScreen extends StatelessWidget {
   const GlassScreen({super.key});
 
@@ -88,7 +87,7 @@ class GlassScreen extends StatelessWidget {
                           Text("•  ", style: TextStyle(fontSize: 16)),
                           Expanded(
                             child: Text(
-                              "The minimum quantity accepted is 5 bottles, but you can recycle larger amounts in multiples of 5 (e.g., 10, 15, 20).",
+                              "The minimum accepted quantity is 5 items and above.",
                               style: TextStyle(fontSize: 12, height: 1.4),
                             ),
                           ),

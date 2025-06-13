@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/features/customer/home/presentation/screen/home_screen.dart';
@@ -55,7 +57,6 @@ class _SignInScreenState extends State<SignInScreen> {
         if (response.statusCode == 200) {
           final responseData = json.decode(response.body);
           final userType = responseData['user_type'];
-          final user = responseData['user'];
           final inputEmail = _emailController.text.trim();
 
           final authProvider = Provider.of<AuthProvider>(

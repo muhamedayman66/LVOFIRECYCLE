@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 class ApiConstants {
   //static const String baseUrl = 'http://10.0.2.2:8000';
   static const String baseUrl = 'https://3dad-156-209-58-32.ngrok-free.app';

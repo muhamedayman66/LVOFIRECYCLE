@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:graduation_project11/core/themes/app__theme.dart';
 import 'package:graduation_project11/features/auth/sign_in/presentation/screen/sign_in_screen.dart';
@@ -6,10 +8,10 @@ import 'package:graduation_project11/features/auth/update_password/screens/set_p
 class ForgetPasswordStep2Screen extends StatelessWidget {
   ForgetPasswordStep2Screen({
     super.key,
-    required this.userType, // إضافة userType كمعامل
+    required this.userType,
   });
 
-  final String userType; // تعريف userType
+  final String userType; 
   final TextEditingController _emailController = TextEditingController();
 
   @override
@@ -136,7 +138,7 @@ class ForgetPasswordStep2Screen extends StatelessWidget {
                               builder:
                                   (context) => SetPasswordScreen1(
                                     email: email,
-                                    userType: userType, // تمرير userType
+                                    userType: userType,
                                   ),
                             ),
                           );
