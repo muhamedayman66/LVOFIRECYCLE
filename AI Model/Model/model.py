@@ -7,7 +7,7 @@ from tensorflow.keras.regularizers import l2
 def create_model(input_shape=(224, 224, 3), num_classes=3):
     base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=input_shape)
     
-    # فتح آخر 5 طبقات فقط للتدريب (Fine-Tuning)
+   
     base_model.trainable = True
     for layer in base_model.layers[:-5]:
         layer.trainable = False
@@ -16,7 +16,7 @@ def create_model(input_shape=(224, 224, 3), num_classes=3):
         base_model,
         GlobalAveragePooling2D(),
         
-        Dropout(0.5),  # تحسين مقاومة الـ overfitting
+        Dropout(0.5), 
         Dense(128, activation="relu", kernel_regularizer=l2(0.01)),
         Dropout(0.5),
         

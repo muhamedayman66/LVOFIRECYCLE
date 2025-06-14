@@ -2,7 +2,7 @@
 
 class ApiConstants {
   //static const String baseUrl = 'http://10.0.2.2:8000';
-  static const String baseUrl = 'https://3dad-156-209-58-32.ngrok-free.app';
+  static const String baseUrl = 'https://ecf1-156-209-10-142.ngrok-free.app';
 
   // User-related endpoints
   static const String registers = '$baseUrl/api/registers/';
